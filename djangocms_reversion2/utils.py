@@ -55,10 +55,10 @@ def _copy_model(instance, **attrs):
 
 def get_version_page_root(site):
     try:
-        return Page.objects.get(title_set__title=VERSION_ROOT_TITLE, site=site)
+        return Page.objects.get(title_set__title=VERSION_ROOT_TITLE)
     except Page.DoesNotExist:
         return api.create_page(
-            VERSION_ROOT_TITLE, constants.TEMPLATE_INHERITANCE_MAGIC, settings.LANGUAGES[0][0], site=site)
+            VERSION_ROOT_TITLE, constants.TEMPLATE_INHERITANCE_MAGIC, settings.LANGUAGES[0][0])
 
 
 def revise_page(page, language):
@@ -215,7 +215,7 @@ def _copy_titles(source, target, language):
 
 def is_version_page(page):
     version_page_root = get_version_page_root(page.site)
-    return page.is_descendant_of(version_page_root)
+    return page.node.is_descendant_of(version_page_root.node)
 
 
 def get_draft_of_version_page(page):

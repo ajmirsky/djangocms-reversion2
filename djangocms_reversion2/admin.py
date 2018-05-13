@@ -8,10 +8,11 @@ from cms import api, constants
 from cms.admin.pageadmin import PageAdmin
 from cms.middleware.page import get_page
 from cms.models import Page, Title, EmptyTitle
-from cms.utils import get_cms_setting, get_language_from_request, get_language_list, i18n
+from cms.utils import get_language_from_request, get_language_list, i18n
 from cms.utils import page_permissions
 from collections import defaultdict
 
+from cms.utils.conf import get_cms_setting
 from cms.utils.page_permissions import user_can_view_page, user_can_publish_page, user_can_change_page
 from django.conf.urls import url
 from django.contrib import admin, messages
